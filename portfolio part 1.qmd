@@ -1,0 +1,44 @@
+---
+title: "College Cost Analysis"
+author: "Emmanuel Laureano-Maravilla"
+format: html
+---
+
+##Research Question:
+-How does college tuition change over time in the United States?
+
+##Data Source Description:
+This dataset for this project it going to be from the U.S department Education College Scorecard database. The dataset contains institution level information on college all through the U.S.
+
+##Variables:
+INSTNM: Institu tion name
+CONTROL: Type of Institution
+TUITIONFEE_IN: Tuition in state
+TUITIONFEE_OUT: Tuition out of state
+STABBR: State 
+UGDS: number of undergraduates 
+
+##Data Visualization
+The final product visualization will include a line graph. The line graph will show the change of tuition. Possibly include a bar graph to compare tuition in different types of institution.
+
+The visualization will show the trends in tuition over time and the difference in private and public. It will be labeled clearly and add different colors to the different categories.
+
+I think it will be better if the variables were to be cleaner and new variables possibly to show avg tuition. 
+
+##Data cleaning
+
+Reformat Variables - Yes, some names need to become clearer
+
+Create New Variables- Yes, I will create new variables called avg tuition by combining both in and out of state tuition.
+
+Filter Data- Yes, I will need to keep the important variables that relate to data like tuition, institution type, and possibly enrollement. It will condense the data and make it easier to look at.
+
+
+
+
+
+
+
+
+
+
