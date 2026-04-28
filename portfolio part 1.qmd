@@ -11,7 +11,7 @@ format: html
 This dataset for this project it going to be from the U.S department Education College Scorecard database. The dataset contains institution level information on college all through the U.S.
 
 ##Variables:
-INSTNM: Institu tion name
+INSTNM: Institution name
 CONTROL: Type of Institution
 TUITIONFEE_IN: Tuition in state
 TUITIONFEE_OUT: Tuition out of state
@@ -29,16 +29,39 @@ I think it will be better if the variables were to be cleaner and new variables 
 
 Reformat Variables - Yes, some names need to become clearer
 
-Create New Variables- Yes, I will create new variables called avg tuition by combining both in and out of state tuition.
+Create New Variables- Yes, I will create new variables called avg tuition by combining both in and out of state tuition. For example, to combine both tuitions it will be (TUITIONFEE_IN + TUITIONFEE_OUT)/2
 
 Filter Data- Yes, I will need to keep the important variables that relate to data like tuition, institution type, and possibly enrollement. It will condense the data and make it easier to look at.
 
+Group data - I will group that data by year and institution type to analyze how tuition changes over time and prepare to visualization 
 
 
+```{r}
+library(tidyverse)
+college <- read_csv("Most-Recent-Cohorts-Institution 5.csv")
 
+college_clean <- college %>%
+  drop_na(TUITIONFEE_IN, TUITIONFEE_OUT) %>%
+  mutate(avg_tuition = (TUITIONFEE_IN +  TUITIONFEE_OUT)/2)
 
+  tuition_by_year <- college_clean  %>%
 
+    summarize(avg_tuition = mean(avg_tuition, na.rm = TRUE))
+    
+    ggplot(tuition_by_year, aes(x = YEAR, y = avg_tuition)) +
+      geom_line() +
+      labs(
+        title = "Average College Tuition Over Time",
+        x = "Year",
+        y = "Average Tuition"
+      )
+```
 
+This is a rough draft of a bar chart showing the average college tuition by inst.
+-data cleaning
+-new variable
+-grouping
+-one visualization
 
 
 
