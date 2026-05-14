@@ -5,7 +5,7 @@ format: html
 ---
 
 ##Research Question:
--How does college tuition change over time in the United States?
+-How does college tuition varies in the United States?
 
 ##Data Source Description:
 This dataset for this project it going to be from the U.S department Education College Scorecard database. The dataset contains institution level information on college all through the U.S.
@@ -19,7 +19,7 @@ STABBR: State
 UGDS: number of undergraduates 
 
 ##Data Visualization
-The final product visualization will include a line graph. The line graph will show the change of tuition. Possibly include a bar graph to compare tuition in different types of institution.
+The final product visualization will include a histogram graph. The histogram graph will show the distribution of average tuition in United States. 
 
 The visualization will show the trends in tuition over time and the difference in private and public. It will be labeled clearly and add different colors to the different categories.
 
@@ -36,32 +36,27 @@ Filter Data- Yes, I will need to keep the important variables that relate to dat
 Group data - I will group that data by year and institution type to analyze how tuition changes over time and prepare to visualization 
 
 
-```{r}
+
+
+```{r, echo=FALSE}
 library(tidyverse)
-college <- read_csv("Most-Recent-Cohorts-Institution 5.csv")
 
-college_clean <- college %>%
-  drop_na(TUITIONFEE_IN, TUITIONFEE_OUT) %>%
-  mutate(avg_tuition = (TUITIONFEE_IN +  TUITIONFEE_OUT)/2)
+college <- read_csv("Most-Recent-Cohorts-Institution.csv")
 
-  tuition_by_year <- college_clean  %>%
-
-    summarize(avg_tuition = mean(avg_tuition, na.rm = TRUE))
+college_clean |>
+  group_by(STABBR) |>
+  summarize(median_tuition = median(avg_tuition, na.rm = TRUE)) |>
     
-    ggplot(tuition_by_year, aes(x = YEAR, y = avg_tuition)) +
-      geom_line() +
+    ggplot(aes(x = reorder(STABBR, median_tuition), y = median_tuition)) +
+      geom_col() +
+    coord_flip() +
       labs(
-        title = "Average College Tuition Over Time",
-        x = "Year",
+        title = "Average College Tuition By State",
+        x = "State", 
         y = "Average Tuition"
       )
 ```
-
-This is a rough draft of a bar chart showing the average college tuition by inst.
--data cleaning
--new variable
--grouping
--one visualization
+This is a rough draft of a bar chart showing the average college tuition across colleges. I cleaned data by removing missing values and created a new variable called avg tuition. It combines in and out of state tuition. This visualization shows how tuition varies depending on location of the institutions.
 
 
 
